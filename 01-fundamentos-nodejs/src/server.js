@@ -22,6 +22,7 @@ const server = http.createServer((req, res) => {
     if (method === 'GET' && url === '/users') {
         return res
         .setHeader("Content-type", "application/json")
+        .writeHead(201)
         .end(JSON.stringify(users))  
     }
 
@@ -31,10 +32,10 @@ const server = http.createServer((req, res) => {
             nome: "Jhon Doe",
             email: "jhondoe@gmail.com"
         })
-        return res.end("Usuário criado!")   
+        return res.writeHead(200).end   
     }
 
-    return res.end("Hello World");
+    return res.writeHead(404).end();
 });
 
 server.listen(3333);
